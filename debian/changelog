@@ -1,20 +1,229 @@
-fuse (2.9.0-2+deb7u1) testing-proposed-updates; urgency=low
+fuse (2.9.3-15) unstable; urgency=low
 
-  * Non-maintainer upload.
-  * Fix "directory vs. symlink mess after squeeze => wheezy upgrade:
-    /usr/share/doc/fuse-utils/". dpkg overwrites files over an existing
-    symlink. Thus test in fuse-utils.preinst if a symlink exists and remove
-    it, as in Squeeze fuse-utils had a symlink in /usr/share/doc but not in
-    Wheezy (Closes: #696066).
+  * Use correct long option for udevadm in postinst (closes: #756582).
 
- -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 22 Dec 2012 15:35:33 +0100
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 31 Jul 2014 20:07:21 +0000
+
+fuse (2.9.3-14) unstable; urgency=low
+
+  * New maintainer (closes: #756548).
+  * Add watch file.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Wed, 30 Jul 2014 20:33:25 +0000
+
+fuse (2.9.3-13) unstable; urgency=low
+
+  * I don't care anymore, not worth it.. orphaning.
+
+ -- Daniel Baumann <daniel@laptop.127011.net>  Fri, 25 Jul 2014 16:33:54 +0200
+
+fuse (2.9.3-12) unstable; urgency=low
+
+  * Cherry-picking patch from upstream for arm64 (Closes: #752081).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Fri, 20 Jun 2014 08:27:34 +0200
+
+fuse (2.9.3-11) unstable; urgency=low
+
+  * Improving fuse.postinst to handle device creation a bit better
+    (Closes: #743360).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 14 Jun 2014 21:25:15 +0200
+
+fuse (2.9.3-10) unstable; urgency=low
+
+  * Conditionally only trigger udevadm only when /dev/fuse has already
+    been available (Closes: #745295).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 03 May 2014 12:16:17 +0200
+
+fuse (2.9.3-9) unstable; urgency=low
+
+  * Loading fuse module in postinst to cover some edge cases where udev
+    reloading would fail (Closes: #743360).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 05 Apr 2014 11:32:44 +0200
+
+fuse (2.9.3-8) unstable; urgency=low
+
+  * Building with dh --parallel.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Mon, 31 Mar 2014 19:50:34 +0200
+
+fuse (2.9.3-7) experimental; urgency=low
+
+  * Adding patch from Fabrice Bauzac <fbauzac@amadeus.com> to use dlsym()
+    instead of relying on ld.so constructor functions to load modules
+    (Closes: #737143).
+  * Updating year in copyright for 2014.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 01 Feb 2014 05:54:44 +0100
+
+fuse (2.9.3-6) experimental; urgency=low
+
+  * Adding explicit permissions to udev rule for device nodes.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 28 Dec 2013 20:49:22 +0100
+
+fuse (2.9.3-5) experimental; urgency=low
+
+  * Updating to standards version 3.9.5.
+  * Building with dh-autoreconf (Closes: #732285).
+  * Dropping fuse group (Closes: #733312).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 28 Dec 2013 15:16:28 +0100
+
+fuse (2.9.3-4) experimental; urgency=low
+
+  * Updating vcs fields.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 17 Oct 2013 10:05:12 +0200
+
+fuse (2.9.3-3) experimental; urgency=low
+
+  * Simplyfing libfuse2 symbols by marking linux-only symbols as linux-
+    only rather than to ship two different sets for linux and kfreebsd,
+    thanks to Pino Toscano <pino@debian.org> (Closes: #717197).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Wed, 17 Jul 2013 22:35:26 +0200
+
+fuse (2.9.3-2) experimental; urgency=low
+
+  * Adding vcs fields.
+  * Wrapping control fields.
+  * Adding lintian overrides.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Wed, 17 Jul 2013 13:10:22 +0200
+
+fuse (2.9.3-1) experimental; urgency=low
+
+  * Merging upstream version 2.9.3.
+  * Updating year in copyright file.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 02 Jul 2013 17:53:03 +0200
+
+fuse (2.9.2-9) experimental; urgency=low
+
+  * Updating kfreebsd symbols files again.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 11 Jun 2013 17:44:22 +0200
+
+fuse (2.9.2-8) experimental; urgency=low
+
+  * Correcting fuse-dbg package description.
+  * Harmonizing dpkg-statoverride calls in postinst.
+  * Excluding package on hurd by explicitly listing linux-any and
+    kfreebsd-any, it doesn't build on hurd anyway.
+  * Adding kfreebsd specific symbols file for libfuse2.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 06 Jun 2013 08:02:49 +0200
+
+fuse (2.9.2-7) experimental; urgency=low
+
+  * Creating an udev event rather than reloading udev (Closes: #679930).
+  * Only creating /dev/fuse with MAKEDEV if it doesn't already exist.
+  * Clarify manpage that fusermount is used for unmounting only these days
+    (Closes: #651556).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 04 Jun 2013 22:27:29 +0200
+
+fuse (2.9.2-6) experimental; urgency=low
+
+  * Adding initial symbols file for libfuse, thanks to Pino Toscano
+    <pino@debian.org> (Closes: #559473).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 04 Jun 2013 18:56:30 +0200
+
+fuse (2.9.2-5) experimental; urgency=low
+
+  * Including header files in examples (Closes: #626522).
+  * Prefixing patches with four digits in filenames.
+  * Trimming diff headers in patches.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 23 May 2013 14:50:28 +0200
+
+fuse (2.9.2-4) unstable; urgency=low
+
+  * Removing all references to my old email address.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sun, 10 Mar 2013 20:29:13 +0100
+
+fuse (2.9.2-3) unstable; urgency=low
+
+  * Updating year in copyright.
+  * Removing fuse.preinst with squeeze-to-wheezy upgrade cleanup.
+  * Adding dpkg-source local-options.
+  * Dropping dpkg-source compression level.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 24 Jan 2013 12:18:47 +0100
+
+fuse (2.9.2-2) unstable; urgency=low
+
+  * Removing fuse group in postrm, thanks to Tom Jampen
+    <tom@cryptography.ch>.
+  * Also rebuilding initramfs on fuse removal.
+  * Removing pre-wheezy udev detection in postinst for device creation.
+  * Updating to standards version 3.9.4.
+  * Building without conditional multiarch support for pre-wheezy.
+  * Dropping pre-wheezy transitional package.
+  * Dropping pre-wheezy breaks against loop-aes-utils.
+  * Removing configuration file on purge.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 13 Dec 2012 12:10:35 +0100
+
+fuse (2.9.2-1) unstable; urgency=low
+
+  * Merging upstream version 2.9.2.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Fri, 19 Oct 2012 12:47:21 +0200
+
+fuse (2.9.1-1) unstable; urgency=low
+
+  * Merging upstream version 2.9.1.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Fri, 21 Sep 2012 19:07:33 +0200
+
+fuse (2.9.0-5) unstable; urgency=low
+
+  * Adjusting permission on fusermount conditionally upon build
+    architecture (Closes: #680232).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 05 Jul 2012 16:54:23 +0200
+
+fuse (2.9.0-4) unstable; urgency=low
+
+  * Some editorial changes to copyright file.
+  * Removing sysvinit start and stop links before removing fuse
+    initscript (Closes: #679608).
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sat, 30 Jun 2012 15:51:06 +0200
+
+fuse (2.9.0-3) unstable; urgency=low
+
+  * Simplyfing backports compatible use of multiarch debhelper install
+    files.
+  * Correcting typo in conditional gencontrol call in rules.
+  * Updating GPL boilerplate in copyright file.
+  * Switching to xz compression.
+  * Using make conditionals instead of shell conditional in rules for
+    consistency.
+  * Removing old dpkg trigger for initramfs-tools.
+  * Automatically loading fuse kernel module with kmod.
+  * Removing old initscript in preinst (Closes: #670635).
+  * Rewrapping default fuse.conf.
+  * Adding /dev/cuse to fuse rule (Closes: #668509).
+  * Reloading udev in postinst (Closes: #568644, #617667, #628375).
+  * Adjusting section and priority of the transitional package.
+  * Using official package-type for udeb packages in control now.
+
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Fri, 29 Jun 2012 17:42:25 +0200
 
 fuse (2.9.0-2) unstable; urgency=low
 
   * Correcting debhelper docs file to not include unwanted files
     (Closes: ##674198).
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Thu, 21 Jun 2012 13:52:01 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 21 Jun 2012 13:52:01 +0200
 
 fuse (2.9.0-1) unstable; urgency=low
 
@@ -27,14 +236,14 @@ fuse (2.9.0-1) unstable; urgency=low
   * Removing ftbfs.patch, included upstream.
   * Removing local manpages, included upstream.
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Fri, 18 May 2012 08:25:16 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Fri, 18 May 2012 08:25:16 +0200
 
 fuse (2.8.7-2) unstable; urgency=low
 
   * Removing initscript in favour of udev rule, thanks to Josh Triplett
     <josh@joshtriplett.org> (Closes: #667988, #601546).
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Mon, 16 Apr 2012 09:32:12 +0000
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Mon, 16 Apr 2012 09:32:12 +0000
 
 fuse (2.8.7-1) unstable; urgency=low
 
@@ -58,7 +267,7 @@ fuse (2.8.6-4) unstable; urgency=low
   * Correcting spelling typo in mount.fuse manpage, thanks to A. Costa
     <agcosta@gis.net> (Closes: #646676).
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Wed, 07 Dec 2011 08:40:57 +0100
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Wed, 07 Dec 2011 08:40:57 +0100
 
 fuse (2.8.6-3) unstable; urgency=low
 
@@ -71,7 +280,7 @@ fuse (2.8.6-3) unstable; urgency=low
   * Consulting dpkg-stateoverride before resetting owner and permission
     for /etc/fuse.conf in fuse postinst (Closes: #649942).
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Mon, 28 Nov 2011 15:34:53 +0100
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Mon, 28 Nov 2011 15:34:53 +0100
 
 fuse (2.8.6-2) unstable; urgency=low
 
@@ -95,7 +304,7 @@ fuse (2.8.6-2) unstable; urgency=low
   * Updating todo file.
   * Removing double entries in 2.8.5-4 section of debian changelog.
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Sun, 23 Oct 2011 11:07:53 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sun, 23 Oct 2011 11:07:53 +0200
 
 fuse (2.8.6-1) unstable; urgency=low
 
@@ -105,7 +314,7 @@ fuse (2.8.6-1) unstable; urgency=low
   * Removing cve-2011-0543.patch, included upstream.
   * Renumbering remaining patches.
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Wed, 28 Sep 2011 08:13:03 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Wed, 28 Sep 2011 08:13:03 +0200
 
 fuse (2.8.5-5) unstable; urgency=low
 
@@ -113,7 +322,7 @@ fuse (2.8.5-5) unstable; urgency=low
   * Using linux-any in build-depends rather than negatively listing
     kfreebsd (Closes: #634321).
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Thu, 08 Sep 2011 20:30:29 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 08 Sep 2011 20:30:29 +0200
 
 fuse (2.8.5-4) unstable; urgency=low
 
@@ -124,14 +333,14 @@ fuse (2.8.5-4) unstable; urgency=low
   * Updating todo file.
   * Removing obsolete --disable-kernel-module from configure call.
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Sun, 10 Jul 2011 17:07:36 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Sun, 10 Jul 2011 17:07:36 +0200
 
 fuse (2.8.5-3) unstable; urgency=low
 
   * Updating udev check in postinst to also look for /run (Closes:
     #628050).
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Fri, 03 Jun 2011 10:17:31 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Fri, 03 Jun 2011 10:17:31 +0200
 
 fuse (2.8.5-2) unstable; urgency=low
 
@@ -150,7 +359,7 @@ fuse (2.8.5-2) unstable; urgency=low
   * Updating source section.
   * Adding debug package.
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Thu, 26 May 2011 14:47:38 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 26 May 2011 14:47:38 +0200
 
 fuse (2.8.5-1) experimental; urgency=low
 
@@ -190,14 +399,14 @@ fuse (2.8.5-1) experimental; urgency=low
   * Dropping la files (Closes: #621309).
   * Adding todo file.
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Thu, 26 May 2011 11:01:16 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Thu, 26 May 2011 11:01:16 +0200
 
 fuse (2.8.4-2) unstable; urgency=low
 
   * Taking over package from Bartosz and Adam with thanks for their past
     contributions, both of them are MIA.
 
- -- Daniel Baumann <daniel.baumann@progress-technologies.net>  Tue, 24 May 2011 20:04:54 +0200
+ -- Daniel Baumann <mail@daniel-baumann.ch>  Tue, 24 May 2011 20:04:54 +0200
 
 fuse (2.8.4-1.5) unstable; urgency=low
 

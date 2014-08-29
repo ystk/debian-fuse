@@ -1,20 +1,27 @@
 Source: fuse
 Section: utils
 Priority: optional
-Maintainer: Daniel Baumann <daniel.baumann@progress-technologies.net>
-Build-Depends: debhelper (>= 9), autotools-dev, libselinux-dev [linux-any]
-Standards-Version: 3.9.3
+Maintainer: Laszlo Boszormenyi (GCS) <gcs@debian.org>
+Build-Depends:
+ debhelper (>= 9),
+ dh-autoreconf,
+ libselinux-dev [linux-any],
+Standards-Version: 3.9.5
 Homepage: http://fuse.sourceforge.net/
+#Vcs-Browser: http://daniel-baumann.ch/gitweb/?p=debian/packages/fuse.git
+#Vcs-Git: git://daniel-baumann.ch/git/debian/packages/fuse.git
 
 Package: fuse
 Section: utils
 Architecture: linux-any
 Depends:
- ${misc:Depends}, ${shlibs:Depends}, libfuse2 (= ${binary:Version}), adduser,
- mount (>= 2.19.1), sed (>= 4), udev | makedev
-Breaks: loop-aes-utils (<< 2.16.2-3~)
-Conflicts: fuse-utils (<< 2.8.5-2~)
-Replaces: fuse-utils
+ ${misc:Depends},
+ ${shlibs:Depends},
+ libfuse2 (= ${binary:Version}),
+ adduser,
+ mount (>= 2.19.1),
+ sed (>= 4),
+ udev | makedev,
 Description: Filesystem in Userspace
  Filesystem in Userspace (FUSE) is a simple interface for userspace programs to
  export a virtual filesystem to the Linux kernel. It also aims to provide a
@@ -24,32 +31,28 @@ Description: Filesystem in Userspace
 Package: fuse-dbg
 Section: debug
 Priority: extra
-Architecture: any
+Architecture: linux-any kfreebsd-any
 Depends:
- ${misc:Depends}, fuse (= ${binary:Version}) [linux-any],
- libfuse2 (= ${binary:Version}), libfuse-dev (= ${binary:Version})
-Description: Filesystem in Userspace
+ ${misc:Depends},
+ fuse (= ${binary:Version}) [linux-any],
+ libfuse2 (= ${binary:Version}),
+ libfuse-dev (= ${binary:Version}),
+Description: Filesystem in Userspace (debug)
  Filesystem in Userspace (FUSE) is a simple interface for userspace programs to
  export a virtual filesystem to the Linux kernel. It also aims to provide a
  secure method for non privileged users to create and mount their own filesystem
  implementations.
-
-Package: fuse-utils
-Section: utils
-Architecture: all
-Depends: ${misc:Depends}, fuse
-Description: Filesystem in Userspace (transitional package)
- Package to ease upgrading from older fuse-utils packages to the new fuse
- package.
  .
- This package can be purged at anytime once the fuse package has been installed.
+ This package contains the debugging symbols.
 
 Package: libfuse2
 Section: libs
-Architecture: any
-Multi-Arch: ${fuse:Multi-Arch}
+Architecture: linux-any kfreebsd-any
+Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
 Conflicts: fuse (<< ${binary:Version})
 Suggests: fuse
 Description: Filesystem in Userspace (library)
@@ -62,10 +65,11 @@ Description: Filesystem in Userspace (library)
 
 Package: libfuse-dev
 Section: libdevel
-Architecture: any
+Architecture: linux-any kfreebsd-any
 Depends:
- ${misc:Depends}, libfuse2 (= ${binary:Version}),
- libselinux-dev [linux-any]
+ ${misc:Depends},
+ libfuse2 (= ${binary:Version}),
+ libselinux-dev [linux-any],
 Suggests: fuse
 Description: Filesystem in Userspace (development)
  Filesystem in Userspace (FUSE) is a simple interface for userspace programs to
@@ -76,15 +80,20 @@ Description: Filesystem in Userspace (development)
  This package contains the development files.
 
 Package: fuse-udeb
+Package-Type: udeb
 Architecture: linux-any
 Section: debian-installer
-Depends: ${misc:Depends}, ${shlibs:Depends}, libfuse2-udeb (= ${binary:Version})
-XC-Package-Type: udeb
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ libfuse2-udeb (= ${binary:Version}),
 Description: Filesystem in Userspace
 
 Package: libfuse2-udeb
-Architecture: any
+Package-Type: udeb
+Architecture: linux-any kfreebsd-any
 Section: debian-installer
-Depends: ${misc:Depends}, ${shlibs:Depends}
-XC-Package-Type: udeb
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
 Description: Filesystem in Userspace (library)
