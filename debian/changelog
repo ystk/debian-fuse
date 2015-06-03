@@ -1,3 +1,12 @@
+fuse (2.8.4-1.1+deb6u1) squeeze-lts; urgency=high
+
+  * Add myself as the maintainer.
+
+  [ Santiago Ruano Rincón <santiagorr@riseup.net> ]
+  * Fix CVE-2015-3202 by backporting the patch used in 2.9.0-2+deb7u2 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 26 May 2015 19:50:10 +0000
+
 fuse (2.8.4-1.1) unstable; urgency=low
 
   * Non-maintainer upload.

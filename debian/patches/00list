@@ -2,3 +2,4 @@
 001-GNU_kFreeBSD
 #002-Missing_pthread_link_on_libulockmgr
 #003-CVE-2009-3297
+004-CVE-2015-3202.dpatch
