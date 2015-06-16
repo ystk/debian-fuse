@@ -4,3 +4,4 @@
 0004-fusermount-manpage.patch
 0005-dlsym.patch
 0006-arm64.patch
+0007-CVE-2015-3202.patch

@@ -1,3 +1,12 @@
+fuse (2.9.3-15+deb8u1) jessie-security; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Add 0007-CVE-2015-3202.patch patch.
+    CVE-2015-3202: Missing scrubbing of the environment before executing a
+    mount or umount of a filesystem.
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Thu, 21 May 2015 07:48:41 +0200
+
 fuse (2.9.3-15) unstable; urgency=low
 
   * Use correct long option for udevadm in postinst (closes: #756582).
