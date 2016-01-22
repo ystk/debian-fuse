@@ -4,6 +4,10 @@ set -e
 
 case "${1}" in
 	configure)
+		if [ -c /dev/cuse ]
+		then
+			chmod 0600 /dev/cuse > /dev/null 2>&1
+		fi
 		if ! dpkg-statoverride --list /bin/fusermount > /dev/null 2>&1
 		then
 			chmod 4755 /bin/fusermount

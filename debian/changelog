@@ -1,3 +1,9 @@
+fuse (2.9.3-15+deb8u2) jessie-security; urgency=high
+
+  * Fix permissions on cuse character device to be accessible by root only.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Wed, 20 Jan 2016 19:58:39 +0100
+
 fuse (2.9.3-15+deb8u1) jessie-security; urgency=high
 
   * Non-maintainer upload by the Security Team.
