@@ -5,3 +5,8 @@
 0005-dlsym.patch
 0006-arm64.patch
 0007-CVE-2015-3202.patch
+CVE-2018-10906/0001-fusermount-prevent-silent-truncation-of-mount-option.patch
+CVE-2018-10906/0002-fusermount-don-t-feed-escaped-commas-into-mount-opti.patch
+CVE-2018-10906/0003-fusermount-bail-out-on-transient-config-read-failure.patch
+CVE-2018-10906/0004-fusermount-refuse-unknown-options.patch
+CVE-2018-10906/0005-fusermount-whitelist-known-good-filesystems-for-moun.patch
